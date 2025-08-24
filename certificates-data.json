@@ -1,0 +1,68 @@
+{
+  "certificates": {
+    "ai_core": [
+      {
+        "title": "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+        "org": "Oracle",
+        "date_iso": "2025-08-22",
+        "display_date": "22 Aug 2025",
+        "group": "ai_core",
+        "highlight": true,
+        "tags": ["AI"],
+        "proof": "Pic/eCertificate AI.pdf",
+        "description": "ความเชี่ยวชาญด้าน Machine Learning และ GenAI บนคลาวด์ พร้อมประยุกต์ใช้ในโปรเจ็กต์จริง",
+        "description_en": "ML & GenAI expertise on cloud platforms"
+      }
+    ],
+    "enterprise_apps": [
+      {
+        "title": "Oracle Fusion Cloud Applications CX Certified Foundations Associate",
+        "org": "Oracle",
+        "date_iso": "2025-05-14",
+        "display_date": "14 May 2025",
+        "group": "enterprise_apps",
+        "highlight": false,
+        "tags": ["CX"],
+        "proof": "Pic/eCertificate_CX.pdf",
+        "description": "ความเข้าใจระบบ Customer Experience และการประยุกต์ AI สำหรับ customer analytics",
+        "description_en": "Customer analytics & AI-driven insights"
+      },
+      {
+        "title": "Oracle Fusion Cloud Applications ERP Certified Foundations Associate",
+        "org": "Oracle",
+        "date_iso": "2025-05-15",
+        "display_date": "15 May 2025",
+        "group": "enterprise_apps",
+        "highlight": false,
+        "tags": ["ERP"],
+        "proof": "Pic/eCertificate_ERP.pdf",
+        "description": "พื้นฐานระบบ Enterprise Resource Planning และการใช้ AI ในการ forecasting และ automation",
+        "description_en": "ERP foundations with AI forecasting capabilities"
+      },
+      {
+        "title": "Oracle Fusion Cloud Applications SCM Certified Foundations Associate",
+        "org": "Oracle",
+        "date_iso": "2025-05-15",
+        "display_date": "15 May 2025",
+        "group": "enterprise_apps",
+        "highlight": false,
+        "tags": ["SCM"],
+        "proof": "Pic/eCertificate_SCM.pdf",
+        "description": "ความรู้ Supply Chain Management และการประยุกต์ AI สำหรับ demand planning และ optimization",
+        "description_en": "Supply chain optimization with AI-driven planning"
+      },
+      {
+        "title": "Oracle Fusion Cloud Applications HCM Certified Foundations Associate",
+        "org": "Oracle",
+        "date_iso": "2025-05-14",
+        "display_date": "14 May 2025",
+        "group": "enterprise_apps",
+        "highlight": false,
+        "tags": ["HCM"],
+        "proof": "Pic/Certificate_HCM.pdf",
+        "description": "พื้นฐาน Human Capital Management และการใช้ AI ในการวิเคราะห์ workforce analytics",
+        "description_en": "Workforce analytics & AI-powered HR insights"
+      }
+    ]
+  }
+}
