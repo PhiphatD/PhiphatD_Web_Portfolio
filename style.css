@@ -169,6 +169,13 @@ body {
   transform: scale(1.05);
 }
 
+.nav-logo .logo-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: var(--spacing-sm);
+  display: inline-block;
+}
+
 .logo-text {
   font-size: var(--font-size-xl);
   font-weight: 700;
