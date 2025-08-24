@@ -1,5 +1,5 @@
 /* Lightweight service worker for offline stability and runtime caching */
-const CACHE_NAME = 'pd-portfolio-v3';
+const CACHE_NAME = 'pd-portfolio-v4';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -7,7 +7,6 @@ const CORE_ASSETS = [
   './script.js',
   './slideshow.js',
   './certificate-renderer.js',
-  './certificates-data.json',
   './icons/portfolio-logo.svg'
 ];
 
