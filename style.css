@@ -1250,6 +1250,15 @@ section.visible {
   font-style: italic;
 }
 
+/* Certificate section-specific heading adjustments */
+.certificate-section .section__title {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+}
+
 /* Featured Certificate (AI Foundations) */
 .certificate-featured {
   margin-bottom: var(--spacing-3xl);
@@ -1342,7 +1351,7 @@ section.visible {
 }
 
 .certificate-group-title {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: var(--spacing-xl);
@@ -2053,6 +2062,20 @@ img[loading="lazy"].loaded {
   .project-item {
     margin: 0 var(--spacing-sm);
   }
+}
+
+/* Skills section-specific heading and subtitle adjustments */
+.skills.section .section__title {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  margin-bottom: var(--spacing-lg);
+}
+
+.skills.section .section__subtitle {
+  margin: var(--spacing-2xl) auto var(--spacing-6xl);
 }
 
 /* Print Styles */
