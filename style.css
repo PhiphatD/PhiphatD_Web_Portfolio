@@ -530,7 +530,7 @@ section.visible {
   text-align: center;
   font-size: var(--font-size-lg);
   color: var(--text-secondary);
-  margin: 0 auto var(--spacing-2xl);
+  margin: var(--spacing-xl) auto var(--spacing-6xl);
   font-weight: 400;
   width: 100%;
 }
@@ -1259,9 +1259,9 @@ section.visible {
   background: var(--card-bg);
   border: 2px solid var(--accent-primary);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   display: flex;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
   text-decoration: none;
   color: inherit;
   transition: var(--transition);
@@ -1287,8 +1287,8 @@ section.visible {
 }
 
 .certificate-item--featured .certificate-preview {
-  flex: 0 0 300px;
-  height: 200px;
+  flex: 0 0 240px;
+  height: 160px;
   border-radius: var(--border-radius-md);
   overflow: hidden;
   position: relative;
@@ -1296,7 +1296,7 @@ section.visible {
 }
 
 .certificate-item--featured .certificate-preview img {
-  max-height: 300px;
+  max-height: 240px;
 }
 
 .certificate-item--featured .certificate-info {
@@ -1386,11 +1386,11 @@ section.visible {
   display: flex;
   justify-content: center;
   margin: var(--spacing-lg) auto;
-  max-width: 600px;
+  max-width: 520px;
 }
 
 .certificate-featured .certificate-item--featured {
-  max-width: 500px;
+  max-width: 420px;
   width: 100%;
 }
 
@@ -1480,7 +1480,7 @@ img[loading="lazy"].loaded {
 
 /* Reduce large image impact */
 .about-image img {
-    max-width: 300px;
+    max-width: 400px;
     max-height: 400px;
     object-fit: cover;
     object-position: center;
