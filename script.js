@@ -601,7 +601,7 @@ if (typeof module !== 'undefined' && module.exports) {
 // Service Worker registration for offline support
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(err => {
+    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(err => {
       console.error('ServiceWorker registration failed:', err);
     });
   });

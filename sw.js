@@ -1,5 +1,5 @@
 /* Lightweight service worker for offline stability and runtime caching */
-const CACHE_NAME = 'pd-portfolio-v1';
+const CACHE_NAME = 'pd-portfolio-v3';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -81,8 +81,8 @@ self.addEventListener('fetch', event => {
       return;
     }
 
-    // Images / PDFs -> cache first
-    if (/\.(png|jpe?g|webp|svg|gif|pdf)$/i.test(url.pathname)) {
+    // Images -> cache first (exclude PDFs)
+    if (/\.(png|jpe?g|webp|svg|gif)$/i.test(url.pathname)) {
       event.respondWith(cacheFirst(request));
       return;
     }
