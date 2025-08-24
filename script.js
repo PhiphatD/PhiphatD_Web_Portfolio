@@ -78,6 +78,10 @@ function initializeNavigation() {
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
+            // Immediately update active state on click
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
@@ -150,8 +154,9 @@ function initializeIntersectionObserver() {
             }
         });
     }, {
-        threshold: 0.5,
-        rootMargin: '-100px 0px'
+        // Tune viewport band to reduce rapid toggling during fast scrolls
+        rootMargin: '-30% 0px -60% 0px',
+        threshold: 0
     });
     
     // Observe all sections
@@ -159,6 +164,50 @@ function initializeIntersectionObserver() {
         revealObserver.observe(section);
         navObserver.observe(section);
     });
+
+    // Debounced scroll fallback to force-sync active link after fast scrolling
+    const syncNavActive = () => {
+        const viewportH = window.innerHeight || document.documentElement.clientHeight;
+        const checkY = viewportH * 0.35; // Align with rootMargin top band (~30%-40% area)
+
+        // Near-bottom lock: if user is at the very end of the page, force highlight Contact
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 2)) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const contactLink = document.querySelector('.nav-link[href="#contact"]');
+            if (contactLink) contactLink.classList.add('active');
+            return;
+        }
+
+        let currentId = null;
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= checkY && rect.bottom >= checkY) {
+                currentId = section.id;
+            }
+        });
+
+        if (!currentId) {
+            // Fallback to nearest section top to the check line
+            let minDist = Infinity;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const dist = Math.abs(rect.top - checkY);
+                if (dist < minDist) {
+                    minDist = dist;
+                    currentId = section.id;
+                }
+            });
+        }
+
+        if (currentId) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-link[href="#${currentId}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+    };
+
+    window.addEventListener('scroll', debounce(syncNavActive, 100));
 }
 
 // Mobile menu functionality

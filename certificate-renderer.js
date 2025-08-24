@@ -65,7 +65,7 @@ class CertificateRenderer {
         if (!certificates) return;
 
         let html = `
-            <h2 class="section__title">Certificate</h2>
+            <h2 class="section__title">Certifications</h2>
             <span class="section__subtitle">AI-first, business-ready</span>
         `;
 
@@ -140,7 +140,7 @@ function renderCertificatesFromData(certificates) {
     `).join('') || '';
 
     const fullHtml = `
-        <h2 class="section__title">Certificate</h2>
+        <h2 class="section__title">Certifications</h2>
         <span class="section__subtitle">AI-first, business-ready</span>
         ${featuredHtml}
         <div class="certificate-group">
