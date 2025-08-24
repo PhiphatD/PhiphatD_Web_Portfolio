@@ -21,7 +21,7 @@ class CertificateRenderer {
     renderFeaturedCertificate(cert) {
         return `
             <div class="certificate-featured">
-                <a href="${cert.proof}" target="_blank" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
+                <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
                     <div class="certificate-preview">
                         <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                         <div class="certificate-fallback" style="display: none;">
@@ -43,7 +43,7 @@ class CertificateRenderer {
 
     renderRegularCertificate(cert) {
         return `
-            <a href="${cert.proof}" target="_blank" class="certificate-item" aria-label="${cert.title}">
+            <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
                 <div class="certificate-preview">
                     <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="certificate-fallback" style="display: none;">
@@ -102,7 +102,7 @@ function renderCertificatesFromData(certificates) {
     // Featured certificates
     const featuredHtml = certificates.ai_core?.map(cert => `
         <div class="certificate-featured">
-            <a href="${cert.proof}" target="_blank" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
+            <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
                 <div class="certificate-preview">
                     <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
                     <div class="certificate-fallback">
@@ -123,7 +123,7 @@ function renderCertificatesFromData(certificates) {
 
     // Regular certificates
     const regularHtml = certificates.enterprise_apps?.map(cert => `
-        <a href="${cert.proof}" target="_blank" class="certificate-item" aria-label="${cert.title}">
+        <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
             <div class="certificate-preview">
                 <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
                 <div class="certificate-fallback">
