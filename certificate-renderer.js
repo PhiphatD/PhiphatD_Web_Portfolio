@@ -19,9 +19,8 @@ class CertificateRenderer {
     }
 
     renderFeaturedCertificate(cert) {
-        return `
-            <div class="certificate-featured">
-                <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
+        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const commonInner = `
                     <div class="certificate-preview">
                         <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                         <div class="certificate-fallback" style="display: none;">
@@ -30,20 +29,24 @@ class CertificateRenderer {
                         </div>
                     </div>
                     <div class="certificate-info">
-                        <div class="certificate-tag">${cert.tags.join(', ')}</div>
+                        <div class="certificate-tag">${(cert.tags||[]).join(', ')}</div>
                         <h3 class="certificate-title">${cert.title}</h3>
                         <p class="certificate-org">${cert.org}</p>
                         <p class="certificate-date">${cert.display_date}</p>
-                        <p class="certificate-description">${cert.description}</p>
-                    </div>
-                </a>
-            </div>
-        `;
+                        ${cert.description ? `<p class=\"certificate-description\">${cert.description}</p>` : ''}
+                    </div>`;
+        return isGoogle
+          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
+                ${commonInner}
+             </a>`
+          : `<button type="button" class="certificate-item certificate-item--featured" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">
+                ${commonInner}
+             </button>`;
     }
 
     renderRegularCertificate(cert) {
-        return `
-            <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
+        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const commonInner = `
                 <div class="certificate-preview">
                     <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="certificate-fallback" style="display: none;">
@@ -55,9 +58,10 @@ class CertificateRenderer {
                     <h4 class="certificate-title">${cert.title}</h4>
                     <p class="certificate-org">${cert.org}</p>
                     <p class="certificate-date">${cert.display_date}</p>
-                </div>
-            </a>
-        `;
+                </div>`;
+        return isGoogle
+          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
     }
 
     async render() {
@@ -106,9 +110,9 @@ function renderCertificatesFromData(certificates) {
     const container = document.querySelector('.certificate-section .container');
     if (!container) return;
 
-    // Core AI as normal grid
-    const aiCoreItemsHtml = certificates.ai_core?.map(cert => `
-        <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
+    const aiCoreItemsHtml = certificates.ai_core?.map(cert => {
+        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const commonInner = `
             <div class="certificate-preview">
                 <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
                 <div class="certificate-fallback">
@@ -120,9 +124,11 @@ function renderCertificatesFromData(certificates) {
                 <h4 class="certificate-title">${cert.title}</h4>
                 <p class="certificate-org">${cert.org}</p>
                 <p class="certificate-date">${cert.display_date}</p>
-            </div>
-        </a>
-    `).join('') || '';
+            </div>`;
+        return isGoogle
+          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
+    }).join('') || '';
 
     const aiCoreGroupHtml = aiCoreItemsHtml ? `
         <div class="certificate-group">
@@ -133,9 +139,9 @@ function renderCertificatesFromData(certificates) {
         </div>
     ` : '';
 
-    // Regular certificates
-    const regularHtml = certificates.enterprise_apps?.map(cert => `
-        <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
+    const regularHtml = certificates.enterprise_apps?.map(cert => {
+        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const commonInner = `
             <div class="certificate-preview">
                 <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
                 <div class="certificate-fallback">
@@ -147,9 +153,11 @@ function renderCertificatesFromData(certificates) {
                 <h4 class="certificate-title">${cert.title}</h4>
                 <p class="certificate-org">${cert.org}</p>
                 <p class="certificate-date">${cert.display_date}</p>
-            </div>
-        </a>
-    `).join('') || '';
+            </div>`;
+        return isGoogle
+          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
+    }).join('') || '';
 
     const fullHtml = `
         <h2 class="section__title">Certifications</h2>

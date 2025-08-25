@@ -518,7 +518,7 @@
                 
                 <!-- 4-Column Grid for all AI Certificates -->
                 <div class="certificate-grid certificate-grid--ai-4col">
-                    <a href="Pic/eCertificate AI.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
+                    <button type="button" class="certificate-item" aria-label="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate" data-cert-src="Pic/eCertificate AI.pdf" data-cert-title="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate AI.png" alt="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                             <div class="certificate-fallback" style="display: none;">
@@ -532,7 +532,7 @@
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">22 Aug 2025</p>
                         </div>
-                    </a>
+                    </button>
                     
                     <a href="https://www.cloudskillsboost.google/public_profiles/86e51984-8a49-403f-ba7a-7e58ec26e8e8" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Google Cloud - Introduction to Generative AI">
                         <div class="certificate-preview">
@@ -588,7 +588,7 @@
             <div class="certificate-group">
                 <h3 class="certificate-group-title">Enterprise Cloud Applications</h3>
                 <div class="certificate-grid">
-                    <a href="Pic/eCertificate_CX.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Fusion Cloud Applications CX Certified Foundations Associate">
+                    <button type="button" class="certificate-item" aria-label="Oracle Fusion Cloud Applications CX Certified Foundations Associate" data-cert-src="Pic/eCertificate_CX.pdf" data-cert-title="Oracle Fusion Cloud Applications CX Certified Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate_CX.png" alt="Oracle Fusion Cloud Applications CX Certified Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">                           <div class="certificate-fallback" style="display: none;">
                                 <div class="pdf-icon">📄</div>
@@ -600,9 +600,9 @@
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">14 May 2025</p>
                         </div>
-                    </a>
+                    </button>
                     
-                    <a href="Pic/eCertificate_ERP.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Fusion Cloud Applications ERP Certified Foundations Associate">
+                    <button type="button" class="certificate-item" aria-label="Oracle Fusion Cloud Applications ERP Certified Foundations Associate" data-cert-src="Pic/eCertificate_ERP.pdf" data-cert-title="Oracle Fusion Cloud Applications ERP Certified Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate_ERP.png" alt="Oracle Fusion Cloud Applications ERP Certified Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">                           <div class="certificate-fallback" style="display: none;">
                                 <div class="pdf-icon">📄</div>
@@ -614,9 +614,9 @@
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">15 May 2025</p>
                         </div>
-                    </a>
+                    </button>
                     
-                    <a href="Pic/eCertificate_SCM.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Fusion Cloud Applications SCM Certified Foundations Associate">
+                    <button type="button" class="certificate-item" aria-label="Oracle Fusion Cloud Applications SCM Certified Foundations Associate" data-cert-src="Pic/eCertificate_SCM.pdf" data-cert-title="Oracle Fusion Cloud Applications SCM Certified Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate_SCM.png" alt="Oracle Fusion Cloud Applications SCM Certified Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">                           <div class="certificate-fallback" style="display: none;">
                                 <div class="pdf-icon">📄</div>
@@ -628,9 +628,9 @@
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">15 May 2025</p>
                         </div>
-                    </a>
+                    </button>
                     
-                    <a href="Pic/Certificate_HCM.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Fusion Cloud Applications HCM Certified Foundations Associate">
+                    <button type="button" class="certificate-item" aria-label="Oracle Fusion Cloud Applications HCM Certified Foundations Associate" data-cert-src="Pic/Certificate_HCM.pdf" data-cert-title="Oracle Fusion Cloud Applications HCM Certified Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/Certificate_HCM.png" alt="Oracle Fusion Cloud Applications HCM Certified Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">                           <div class="certificate-fallback" style="display: none;">
                                 <div class="pdf-icon">📄</div>
@@ -642,7 +642,7 @@
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">14 May 2025</p>
                         </div>
-                    </a>
+                    </button>
                 </div>
             </div>
             </div>
@@ -705,5 +705,15 @@
 
     <script src="script.js"></script>
     <script src="slideshow.js"></script>
+    <!-- Certificate Preview Modal -->
+    <div id="cert-modal" class="cert-modal" aria-hidden="true">
+      <div class="cert-modal__backdrop" data-close></div>
+      <div class="cert-modal__dialog" role="dialog" aria-modal="true" aria-label="Certificate preview">
+        <button class="cert-modal__close" aria-label="Close" data-close>&times;</button>
+        <div class="cert-modal__content">
+          <!-- dynamic content injected here: <img> or <iframe> -->
+        </div>
+      </div>
+    </div>
 </body>
 </html>

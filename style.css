@@ -2370,3 +2370,15 @@ html { scroll-padding-top: 76px; }
   background: #fff; 
   border-radius: 10px; 
 }
+
+/* --- Certificate Modal Styles --- */
+.cert-modal{position:fixed;inset:0;display:none;z-index:1400}
+.cert-modal.is-open{display:block}
+.cert-modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:saturate(120%) blur(2px)}
+.cert-modal__dialog{position:relative;margin:4vh auto;width:min(1100px,92vw);background:#111;border:1px solid #2a2a2a;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.cert-modal__close{position:absolute;top:.5rem;right:.75rem;width:40px;height:40px;background:#222;color:#ddd;border:1px solid #333;border-radius:8px;font-size:26px;line-height:36px}
+.cert-modal__close:hover{background:#2c2c2c}
+.cert-modal__content{padding:14px 14px 18px;display:flex;align-items:center;justify-content:center}
+.cert-modal__content img{max-width:100%;max-height:80dvh;height:auto;object-fit:contain;border-radius:10px}
+.cert-modal__content iframe,.cert-modal__content object{width:100%;height:min(85dvh,78vh);border:0;border-radius:10px;background:#111}
+@media (max-width:640px){.cert-modal__dialog{margin:1.5vh auto;width:96vw}}
