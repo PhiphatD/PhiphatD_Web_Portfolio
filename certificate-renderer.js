@@ -69,9 +69,16 @@ class CertificateRenderer {
             <span class="section__subtitle">AI-first, business-ready</span>
         `;
 
-        // Render featured certificates (AI Core)
+        // Render Core AI as a normal grid (works with mobile 2x2 CSS)
         if (certificates.ai_core && certificates.ai_core.length > 0) {
-            html += certificates.ai_core.map(cert => this.renderFeaturedCertificate(cert)).join('');
+            html += `
+                <div class="certificate-group">
+                    <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
+                    <div class="certificate-grid certificate-grid--ai-4col">
+                        ${certificates.ai_core.map(cert => this.renderRegularCertificate(cert)).join('')}
+                    </div>
+                </div>
+            `;
         }
 
         // Render enterprise applications
@@ -99,27 +106,32 @@ function renderCertificatesFromData(certificates) {
     const container = document.querySelector('.certificate-section .container');
     if (!container) return;
 
-    // Featured certificates
-    const featuredHtml = certificates.ai_core?.map(cert => `
-        <div class="certificate-featured">
-            <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
-                <div class="certificate-preview">
-                    <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
-                    <div class="certificate-fallback">
-                        <div class="pdf-icon">📄</div>
-                        <span>View Certificate</span>
-                    </div>
+    // Core AI as normal grid
+    const aiCoreItemsHtml = certificates.ai_core?.map(cert => `
+        <a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">
+            <div class="certificate-preview">
+                <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
+                <div class="certificate-fallback">
+                    <div class="pdf-icon">📄</div>
+                    <span>View Certificate</span>
                 </div>
-                <div class="certificate-info">
-                    <div class="certificate-tag">${cert.tags.join(', ')}</div>
-                    <h3 class="certificate-title">${cert.title}</h3>
-                    <p class="certificate-org">${cert.org}</p>
-                    <p class="certificate-date">${cert.display_date}</p>
-                    <p class="certificate-description">${cert.description}</p>
-                </div>
-            </a>
-        </div>
+            </div>
+            <div class="certificate-info">
+                <h4 class="certificate-title">${cert.title}</h4>
+                <p class="certificate-org">${cert.org}</p>
+                <p class="certificate-date">${cert.display_date}</p>
+            </div>
+        </a>
     `).join('') || '';
+
+    const aiCoreGroupHtml = aiCoreItemsHtml ? `
+        <div class="certificate-group">
+            <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
+            <div class="certificate-grid certificate-grid--ai-4col">
+                ${aiCoreItemsHtml}
+            </div>
+        </div>
+    ` : '';
 
     // Regular certificates
     const regularHtml = certificates.enterprise_apps?.map(cert => `
@@ -142,7 +154,7 @@ function renderCertificatesFromData(certificates) {
     const fullHtml = `
         <h2 class="section__title">Certifications</h2>
         <span class="section__subtitle">AI-first, business-ready</span>
-        ${featuredHtml}
+        ${aiCoreGroupHtml}
         <div class="certificate-group">
             <h3 class="certificate-group-title">Enterprise Cloud Applications</h3>
             <div class="certificate-grid">

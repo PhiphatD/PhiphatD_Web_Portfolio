@@ -2202,3 +2202,171 @@ html { scroll-padding-top: 76px; }
     white-space: nowrap;
   }
 }
+
+/* มือถือปกติ → แสดงการ์ด Certificate เป็น 2×2 */
+@media (max-width: 600px) {
+  /* ตัวห่อรายการใบเซอร์ของแต่ละหมวด
+     (ในโค้ดคุณใช้ .certificate-grid อยู่แล้ว) */
+  .certificate-section .certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* อย่าให้การ์ด featured ขยายใหญ่เกินคนอื่นบนมือถือ */
+  .certificate-item--featured {
+    grid-column: span 1 !important;
+    grid-row: auto !important;
+    padding: 10px !important;
+  }
+
+  /* การ์ดกะทัดรัด */
+  .certificate-item {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  /* กล่องพรีวิวรูปให้สัดส่วนคงที่ (กันสั่น/ต่างความสูง) */
+  .certificate-preview {
+    aspect-ratio: 4 / 3;      /* 3:2 หรือ 4:3 ก็ได้ ลองดูที่เข้ากับรูปคุณ */
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .certificate-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* หรือ contain ถ้าต้องเห็นทั้งใบ */
+  }
+
+  /* ย่อข้อมูลรองเพื่อไม่ให้การ์ดยาวเกิน */
+  .certificate-org,
+  .certificate-date,
+  .certificate-badge-link {    /* ถ้าคลาสนี้มีอยู่ */
+    display: none !important;
+  }
+
+  /* ตัดบรรทัดหัวข้อให้ไม่ยาวเกิน – สูงเสมอกันทั้งแถว */
+  .certificate-title {
+    font-size: .9rem;
+    line-height: 1.25;
+    min-height: 2.5em;         /* กันสั่นเวลามี 1–2 บรรทัด */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;     /* 2 บรรทัด */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 6px;
+  }
+}
+
+/* จอแคบมาก ๆ (<360px) กลับไป 1 คอลัมน์เพื่อไม่ให้อัดแน่น */
+@media (max-width: 359px) {
+  .certificate-section .certificate-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* รูปในการ์ดให้สัดส่วนคงที่ทุกใบ */
+.certificate-preview {
+  aspect-ratio: 4 / 3;          /* ใช้ 4:3 จะเข้ากับทั้ง Google badge และ Oracle */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111;              /* กันพื้นโปร่ง */
+}
+.certificate-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;           /* เห็นใบครบ ไม่ถูกครอป */
+}
+
+/* เดสก์ท็อป ≥ 1024px: ตามเดิม (จะกี่คอลัมน์คุมตาม CSS ปัจจุบันของคุณ) */
+
+/* แท็บเล็ตและมือถือ ≤ 1024px: บังคับ 2 คอลัมน์ + ยกเลิก featured */
+@media (max-width: 1024px) {
+  .certificate-section .certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  /* อย่าให้การ์ดเด่นกิน 2 คอลัมน์ในจอเล็ก */
+  .certificate-item--featured {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    padding: 12px !important;
+  }
+
+  /* การ์ดกระชับขึ้นบนจอเล็ก */
+  .certificate-item { padding: 12px; border-radius: 12px; }
+
+  /* ตัดหัวข้อให้เท่ากันทั้งแถว (ไม่ยืด-หด) */
+  .certificate-title {
+    font-size: .95rem;
+    line-height: 1.25;
+    min-height: 2.5em;                 /* กันการ์ดสูงไม่เท่ากัน */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;             /* 2 บรรทัดพอ */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  /* ซ่อน metadata ที่ทำให้การ์ดยาว */
+  .certificate-org, .certificate-date, .certificate-badge-link {
+    display: none !important;
+  }
+}
+
+/* จอเล็กมาก < 360px: กลับไป 1 คอลัมน์เพื่อไม่อัดแน่นเกิน */
+@media (max-width: 359px) {
+  .certificate-section .certificate-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Certificate Preview Contain Patch (override) ===== */
+/* กล่องพรีวิว: ขนาดคงที่ + พื้นหลังขาว + เงาบาง และจัดกึ่งกลาง */
+.certificate-preview {
+  aspect-ratio: 16 / 9;                /* ให้กรอบสูงเท่ากันในกริด */
+  height: auto !important;             /* ยกเลิกค่าคงที่เดิม (150px) */
+  background: #fff;                    /* letterbox/pillarbox เป็นสีขาว */
+  border-radius: 12px;                 /* มุมโค้งนิด ๆ */
+  overflow: hidden;                    
+  border: none !important;             /* ไม่ต้องมีเส้นกรอบซ้ำ */
+  padding: 0 !important;               
+  display: flex;                       /* จัดภาพให้อยู่กลางกรอบ */
+  align-items: center;
+  justify-content: center;
+  box-shadow:                           /* เอฟเฟกต์กระดาษเบา ๆ */
+    0 0 0 1px rgba(255,255,255,.08) inset,
+    0 1px 2px rgba(0,0,0,.25);
+}
+
+/* รูปในพรีวิว: แสดงเต็มโดยไม่ครอป/ไม่ซูมเกินกรอบ */
+.certificate-preview img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;      /* แสดงครบทั้งภาพ */
+  object-position: center;
+  display: block;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* กันสไตล์เดิมของการ์ดมาบีบภาพ */
+.certificate-item .certificate-preview img,
+.certificate-item--featured .certificate-preview img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* แก้เคส margin ภายใน preview ที่ทำให้เห็นช่องไฟ */
+.certificate-preview > * { margin: 0 !important; }
+
+/* ตัวเลือก: เพิ่มขอบขาวภายใน (ครอบรูปด้วย div นี้หากต้องการ) */
+.certificate-preview-inner-padding {
+  padding: 8px;             
+  background: #fff; 
+  border-radius: 10px; 
+}
