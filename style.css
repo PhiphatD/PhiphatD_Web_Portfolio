@@ -2371,6 +2371,11 @@ html { scroll-padding-top: 76px; }
   border-radius: 10px; 
 }
 
+/* --- Modal/Preview minimal overrides --- */
+.certificate-preview { background:#fff !important; border-radius:12px !important; overflow:hidden !important; }
+.certificate-preview img { width:100% !important; height:100% !important; object-fit:contain !important; display:block !important; }
+.certificate-fallback { display:flex; align-items:center; justify-content:center; height:160px; color:#ddd; }
+
 /* --- Certificate Modal Styles --- */
 .cert-modal{position:fixed;inset:0;display:none;z-index:1400}
 .cert-modal.is-open{display:block}

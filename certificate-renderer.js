@@ -1,6 +1,25 @@
 // Certificate Data-Driven Renderer
 // ตัวอย่างการใช้งาน JSON data เพื่อเรนเดอร์ certificates
 
+// helper เลือก preview จาก proof อัตโนมัติ
+function getPreviewSrc(cert) {
+  const proof = cert.proof || "";
+  // ชื่อไฟล์ในโฟลเดอร์ Pic/ และเป็น .pdf
+  const isLocalPic = /^(\.\/)?Pic\//i.test(proof);
+  if (isLocalPic && /\.pdf(\?.*)?$/i.test(proof)) {
+    return proof.replace(/\.pdf(\?.*)?$/i, ".png");
+  }
+  // ถ้า proof เป็นรูปอยู่แล้ว ก็ใช้ได้เลย
+  if (/\.(png|jpg|jpeg|webp)(\?.*)?$/i.test(proof)) return proof;
+  // อย่างอื่น (ลิงก์ภายนอก) ไม่มี preview ภาพ
+  return null;
+}
+
+function isGoogleBadge(cert) {
+  const s = (cert.org || "") + " " + (cert.proof || "");
+  return /google|skillsboost|googlecloud/i.test(s);
+}
+
 class CertificateRenderer {
     constructor(containerId, dataUrl) {
         this.container = document.getElementById(containerId);
@@ -19,49 +38,47 @@ class CertificateRenderer {
     }
 
     renderFeaturedCertificate(cert) {
-        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const preview = getPreviewSrc(cert);
+        const google  = isGoogleBadge(cert);
+        const safe    = (u) => encodeURI(u || "");
         const commonInner = `
                     <div class="certificate-preview">
-                        <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="certificate-fallback" style="display: none;">
-                            <div class="pdf-icon">📄</div>
-                            <span>View Certificate</span>
-                        </div>
+                        ${preview ? `<img src="${safe(preview)}" alt="${cert.title}" loading="lazy">`
+                                  : `<div class="certificate-fallback"><div class="pdf-icon">📄</div></div>`}
                     </div>
                     <div class="certificate-info">
                         <div class="certificate-tag">${(cert.tags||[]).join(', ')}</div>
                         <h3 class="certificate-title">${cert.title}</h3>
-                        <p class="certificate-org">${cert.org}</p>
-                        <p class="certificate-date">${cert.display_date}</p>
+                        <p class="certificate-org">${cert.org || ''}</p>
+                        <p class="certificate-date">${cert.display_date || ''}</p>
                         ${cert.description ? `<p class=\"certificate-description\">${cert.description}</p>` : ''}
                     </div>`;
-        return isGoogle
-          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
+        return google
+          ? `<a href="${safe(cert.proof)}" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="${cert.title}">
                 ${commonInner}
              </a>`
-          : `<button type="button" class="certificate-item certificate-item--featured" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">
+          : `<button type="button" class="certificate-item certificate-item--featured" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">
                 ${commonInner}
              </button>`;
     }
 
     renderRegularCertificate(cert) {
-        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const preview = getPreviewSrc(cert);
+        const google  = isGoogleBadge(cert);
+        const safe    = (u) => encodeURI(u || "");
         const commonInner = `
                 <div class="certificate-preview">
-                    <img src="${cert.proof}" alt="${cert.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="certificate-fallback" style="display: none;">
-                        <div class="pdf-icon">📄</div>
-                        <span>View Certificate</span>
-                    </div>
+                    ${preview ? `<img src="${safe(preview)}" alt="${cert.title}" loading="lazy">`
+                              : `<div class="certificate-fallback"><div class="pdf-icon">📄</div></div>`}
                 </div>
                 <div class="certificate-info">
                     <h4 class="certificate-title">${cert.title}</h4>
-                    <p class="certificate-org">${cert.org}</p>
-                    <p class="certificate-date">${cert.display_date}</p>
+                    <p class="certificate-org">${cert.org || ''}</p>
+                    <p class="certificate-date">${cert.display_date || ''}</p>
                 </div>`;
-        return isGoogle
-          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
-          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
+        return google
+          ? `<a href="${safe(cert.proof)}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">${commonInner}</button>`;
     }
 
     async render() {
@@ -111,23 +128,22 @@ function renderCertificatesFromData(certificates) {
     if (!container) return;
 
     const aiCoreItemsHtml = certificates.ai_core?.map(cert => {
-        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const preview = getPreviewSrc(cert);
+        const google  = isGoogleBadge(cert);
+        const safe    = (u) => encodeURI(u || "");
         const commonInner = `
             <div class="certificate-preview">
-                <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
-                <div class="certificate-fallback">
-                    <div class="pdf-icon">📄</div>
-                    <span>View Certificate</span>
-                </div>
+                ${preview ? `<img src="${safe(preview)}" alt="${cert.title}" loading="lazy">`
+                          : `<div class="certificate-fallback"><div class="pdf-icon">📄</div></div>`}
             </div>
             <div class="certificate-info">
                 <h4 class="certificate-title">${cert.title}</h4>
-                <p class="certificate-org">${cert.org}</p>
-                <p class="certificate-date">${cert.display_date}</p>
+                <p class="certificate-org">${cert.org || ''}</p>
+                <p class="certificate-date">${cert.display_date || ''}</p>
             </div>`;
-        return isGoogle
-          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
-          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
+        return google
+          ? `<a href="${safe(cert.proof)}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">${commonInner}</button>`;
     }).join('') || '';
 
     const aiCoreGroupHtml = aiCoreItemsHtml ? `
@@ -140,23 +156,22 @@ function renderCertificatesFromData(certificates) {
     ` : '';
 
     const regularHtml = certificates.enterprise_apps?.map(cert => {
-        const isGoogle = /google/i.test(cert.org || '') || /google|skillsboost/i.test(cert.proof || '');
+        const preview = getPreviewSrc(cert);
+        const google  = isGoogleBadge(cert);
+        const safe    = (u) => encodeURI(u || "");
         const commonInner = `
             <div class="certificate-preview">
-                <img src="${cert.proof}" alt="${cert.title}" loading="lazy">
-                <div class="certificate-fallback">
-                    <div class="pdf-icon">📄</div>
-                    <span>View Certificate</span>
-                </div>
+                ${preview ? `<img src="${safe(preview)}" alt="${cert.title}" loading="lazy">`
+                          : `<div class="certificate-fallback"><div class="pdf-icon">📄</div></div>`}
             </div>
             <div class="certificate-info">
                 <h4 class="certificate-title">${cert.title}</h4>
-                <p class="certificate-org">${cert.org}</p>
-                <p class="certificate-date">${cert.display_date}</p>
+                <p class="certificate-org">${cert.org || ''}</p>
+                <p class="certificate-date">${cert.display_date || ''}</p>
             </div>`;
-        return isGoogle
-          ? `<a href="${cert.proof}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
-          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-cert-src="${cert.proof}" data-cert-title="${cert.title}">${commonInner}</button>`;
+        return google
+          ? `<a href="${safe(cert.proof)}" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="${cert.title}">${commonInner}</a>`
+          : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">${commonInner}</button>`;
     }).join('') || '';
 
     const fullHtml = `

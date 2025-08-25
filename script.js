@@ -670,43 +670,28 @@ if ('serviceWorker' in navigator) {
 }
 
 function initializeCertificateModal(){
-  const modal      = document.getElementById('cert-modal');
-  const contentBox = modal?.querySelector('.cert-modal__content');
-  const closeEls   = modal?.querySelectorAll('[data-close]');
-  if(!modal || !contentBox) return;
+  const modal   = document.getElementById('cert-modal');
+  const content = modal?.querySelector('.cert-modal__content');
+  const closes  = modal?.querySelectorAll('[data-close]');
+  if (!modal || !content) return;
 
-  // Open
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.certificate-item[type="button"]');
-    if(!btn) return;
+    if (!btn) return;
 
-    const src   = btn.getAttribute('data-cert-src');
-    const title = btn.getAttribute('data-cert-title') || 'Certificate';
+    const imgSrc = btn.getAttribute('data-img');
+    const proof  = btn.getAttribute('data-proof');
+    const title  = btn.getAttribute('data-title') || 'Certificate';
 
-    contentBox.innerHTML = '';
-
-    const isPdf = /\.pdf(\?|$)/i.test(src || '');
-    if(isPdf){
-      const iframe = document.createElement('iframe');
-      iframe.src = `${src}#view=FitH&toolbar=1&navpanes=0`;
-      iframe.title = title;
-      contentBox.appendChild(iframe);
-    }else{
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = title;
-      contentBox.appendChild(img);
-    }
+    content.innerHTML = imgSrc
+      ? `<img src="${imgSrc}" alt="${title}">`
+      : `<div style="padding:20px;color:#ddd;text-align:center">No preview image</div>`;
 
     modal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   });
 
-  function close(){
-    modal.classList.remove('is-open');
-    document.body.style.overflow = '';
-    contentBox.innerHTML = '';
-  }
-  closeEls?.forEach(el => el.addEventListener('click', close));
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+  const close = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; content.innerHTML = ''; };
+  closes?.forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 }
