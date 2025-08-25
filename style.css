@@ -243,11 +243,15 @@ body {
 /* Hero Section */
 .hero-section {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  padding-top: 70px; /* ป้องกันการถูก navbar บัง */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -262,13 +266,13 @@ body {
 }
 
 .hero-avatar img {
-  width: 200px;
-  height: 200px;
+  width: clamp(140px, 16vw, 180px);
+  height: clamp(140px, 16vw, 180px);
   border-radius: 50%;
   border: 4px solid var(--accent-primary);
-  box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
-  -webkit-box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
-  -moz-box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+  -webkit-box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+  -moz-box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
 }
 
 .hero-title {
@@ -306,14 +310,14 @@ body {
   font-size: var(--font-size-lg);
   color: var(--text-secondary);
   margin-bottom: var(--spacing-2xl);
-  max-width: 600px;
+  max-width: 66ch;
   margin-left: auto;
   margin-right: auto;
 }
 
 .hero-buttons {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: var(--spacing-xl);
@@ -329,7 +333,7 @@ body {
   
   .hero-buttons .btn {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-sm);
   }
@@ -1156,6 +1160,8 @@ section.visible {
         font-size: 1.5rem;
         margin-right: 0.75rem;
         width: 1.75rem;
+        height: 1.75rem;
+        aspect-ratio: 1 / 1;
     }
     
     .skills__title {
@@ -1428,13 +1434,30 @@ section.visible {
   max-width: 900px;
 }
 
-.certificate-grid--google-row .certificate-item {
-  max-width: 280px;
-}
 
 .certificate-grid--google-row .certificate-preview img {
   max-height: 180px;
   object-fit: contain;
+}
+
+/* AI Foundations 4 Column unified grid */
+.certificate-grid--ai-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) auto 0;
+}
+
+.certificate-grid--ai-4col .certificate-item {
+  max-width: none; /* allow cards to fill grid equally */
+}
+
+/* Responsive: 4 -> 2 -> 1 */
+@media (max-width: 1024px) {
+  .certificate-grid--ai-4col { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .certificate-grid--ai-4col { grid-template-columns: 1fr; }
 }
 
 /* External Link Icon */
@@ -1964,7 +1987,7 @@ img[loading="lazy"].loaded {
   }
   
   .logo-text::before {
-    content: "P | ";
+    content: none;
   }
   
   .logo-text {
@@ -1976,8 +1999,8 @@ img[loading="lazy"].loaded {
   }
   
   .hero-avatar img {
-    width: 150px;
-    height: 150px;
+    width: clamp(96px, 22vw, 140px);
+    height: clamp(96px, 22vw, 140px);
   }
   
   .hero-buttons {
@@ -2101,5 +2124,81 @@ img[loading="lazy"].loaded {
   .hero-section {
     min-height: auto;
     padding: var(--spacing-xl) 0;
+  }
+}
+
+/* ===== Mobile Nav & Hero polish ===== */
+
+/* กันหัวข้อชน navbar ตอนกดลิงก์ anchor */
+html { scroll-padding-top: 76px; }
+
+/* จอ <= 768px: ซ่อนเมนูแนวนอน โชว์ปุ่ม hamburger และทำเมนูแบบดรอปดาวน์ */
+@media (max-width: 768px) {
+  .nav-container { height: 64px; }
+
+  /* ซ่อนเมนูหลักไว้ก่อน */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+  }
+  .nav-menu a {
+    display: block;
+    padding: 14px var(--spacing-lg);
+  }
+
+  /* ปุ่ม hamburger โชว์บนจอเล็ก */
+  .mobile-menu-toggle { display: flex; }
+
+  /* เมื่อเปิดเมนู (script จะสลับคลาส .active ให้) */
+  .nav-menu.active { display: flex; }
+}
+
+/* Hero: ย่อขนาดให้อยู่ในจอแรกสบาย ๆ */
+@media (max-width: 768px) {
+  .hero-content { max-width: 40ch; margin-inline: auto; }
+  .hero-title { font-size: 1.9rem; }
+  .hero-description { font-size: 0.95rem; margin-bottom: var(--spacing-xl); }
+  .hero-avatar img { width: clamp(96px, 22vw, 140px); height: clamp(96px, 22vw, 140px); }
+  .hero-buttons { flex-direction: column; gap: var(--spacing-md); }
+  .hero-buttons .btn { width: 100%; max-width: 320px; }
+  .gradient-text { animation: none; }
+  .gradient-text::after { content: none; }
+}
+
+/* มือถือ: จัด About Stats เป็นแนวนอน 3 คอลัมน์ */
+@media (max-width: 768px) {
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+  }
+  .stat {
+    padding: var(--spacing-md);
+  }
+  .stat-number {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+  .stat-label {
+    font-size: clamp(0.72rem, 2.7vw, 0.85rem);
+  }
+}
+
+/* มือถือ: ย่อข้อความสั้นลงเฉพาะสถิติช่องที่ 3 */
+@media (max-width: 768px) {
+  .about-stats .stat:nth-child(3) .stat-label {
+    font-size: 0; /* ซ่อนข้อความเดิมโดยไม่กระทบ layout */
+    display: inline-block;
+  }
+  .about-stats .stat:nth-child(3) .stat-label::after {
+    content: "Deployed Models";
+    font-size: clamp(0.72rem, 2.7vw, 0.85rem);
+    color: var(--text-secondary);
+    letter-spacing: 0; /* คงสไตล์เดิม */
+    white-space: nowrap;
   }
 }

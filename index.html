@@ -42,8 +42,8 @@
                 <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
                 <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
                 <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#certificate" class="nav-link" role="menuitem">Certifications</a></li>
                 <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#certificate" class="nav-link" role="menuitem">Certifications</a></li>
                 <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
             
@@ -75,7 +75,6 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Request Resume</a>
                     <a href="#contact" class="btn btn-outline">Contact Me</a>
                 </div>
                 
@@ -86,7 +85,7 @@
                         </svg>
                     </a>
                     <a href="https://www.facebook.com/phiphat.deepee" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook Profile" title="Facebook - Connect with me" role="listitem">
-                        <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 16 16" fill="#1877F2" aria-hidden="true">
                             <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                         </svg>
                     </a>
@@ -113,7 +112,7 @@
             <div class="about-content">
                 <div class="about-grid">
                     <div class="about-image">
-                        <img src="Pic/aboutme_2.png" alt="Phiphat Deepee working on an AI project" loading="lazy" decoding="async" width="300" height="400">
+                        <img src="Pic/aboutme_2.png" alt="Phiphat D. working on an AI project" loading="lazy" decoding="async" width="300" height="400">
                     </div>
                     <div class="about-text">
                         <p>
@@ -137,7 +136,7 @@
                                 <span class="stat-label">AI/Data Projects</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number">5+</span>
+                                <span class="stat-number">8+</span>
                                 <span class="stat-label">Certificates</span>
                             </div>
                             <div class="stat">
@@ -426,18 +425,100 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <article class="project-item">
+                    <div class="project-image">
+                        <img src="Pic/Chatbot.png" alt="Bubooking Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-fallback" style="display: none;">
+                            <div class="project-placeholder">📱</div>
+                            <span>Project Image</span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Ride 'N' Guide<br>(AI Travel Chatbot)</h3>
+                        <p class="project-description">Thai-language assistant that detects intent & manages context with GPT-4, integrates Google Maps and OpenWeather to fetch places, routes and live weather, then composes concise, natural responses. Achieved ~96% pass rate across functional, context and API-integration tests.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">GPT-4</span>
+                            <span class="tag">Maps API</span>
+                            <span class="tag">Weather API</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-image">
+                        <img src="Pic/Menu.png" alt="Jimcom Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-fallback" style="display: none;">
+                            <div class="project-placeholder">📊</div>
+                            <span>Project Image</span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Jimcom Analytics</h3>
+                        <p class="project-description">Business intelligence dashboard for sales data analysis and predictive modeling</p>
+                        <div class="project-tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Tableau</span>
+                            <span class="tag">Statistical Analysis</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%234ECDC4'/%3E%3Ctext x='200' y='115' text-anchor='middle' fill='white' font-size='20'%3ECustomer%3C/text%3E%3Ctext x='200' y='140' text-anchor='middle' fill='white' font-size='20'%3ESegmentation%3C/text%3E%3C/svg%3E" alt="Customer Segmentation Project Screenshot" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Segmentation</h3>
+                        <p class="project-description">Machine learning project for customer behavior analysis and market segmentation using clustering algorithms</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Clustering</span>
+                        </div>
+                    </div>
+                </article>
+                
+
+            </div>
+        </div>
+    </section>
+
     <!-- Certificate Section -->
     <section id="certificate" class="certificate-section">
         <div class="container">
             <h2 class="section__title">Certifications</h2>
             
-            <!-- AI Foundations - Featured Certificates -->
+            <!-- AI Foundations - 4 Column Grid -->
             <div class="certificate-group">
                 <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
                 
-                <!-- Oracle Certificate - Featured -->
-                <div class="certificate-featured">
-                    <a href="Pic/eCertificate AI.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item certificate-item--featured" aria-label="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
+                <!-- 4-Column Grid for all AI Certificates -->
+                <div class="certificate-grid certificate-grid--ai-4col">
+                    <a href="Pic/eCertificate AI.pdf" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate AI.png" alt="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                             <div class="certificate-fallback" style="display: none;">
@@ -447,15 +528,12 @@
                         </div>
                         <div class="certificate-info">
                             <div class="certificate-tag">Core AI</div>
-                            <h3 class="certificate-title">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+                            <h4 class="certificate-title">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h4>
                             <p class="certificate-org">Oracle</p>
                             <p class="certificate-date">22 Aug 2025</p>
                         </div>
                     </a>
-                </div>
-                
-                <!-- Google Cloud Certificates - Single Row -->
-                <div class="certificate-grid certificate-grid--google-row">
+                    
                     <a href="https://www.cloudskillsboost.google/public_profiles/86e51984-8a49-403f-ba7a-7e58ec26e8e8" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Google Cloud - Introduction to Generative AI">
                         <div class="certificate-preview">
                             <img src="Pic/Introduction to Generative AI.png" alt="Google Cloud - Introduction to Generative AI" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -567,88 +645,6 @@
                     </a>
                 </div>
             </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <article class="project-item">
-                    <div class="project-image">
-                        <img src="Pic/Chatbot.png" alt="Bubooking Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="project-fallback" style="display: none;">
-                            <div class="project-placeholder">📱</div>
-                            <span>Project Image</span>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Ride 'N' Guide<br>(AI Travel Chatbot)</h3>
-                        <p class="project-description">Thai-language assistant that detects intent & manages context with GPT-4, integrates Google Maps and OpenWeather to fetch places, routes and live weather, then composes concise, natural responses. Achieved ~96% pass rate across functional, context and API-integration tests.</p>
-                        <div class="project-tags">
-                            <span class="tag">Flutter</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">GPT-4</span>
-                            <span class="tag">Maps API</span>
-                            <span class="tag">Weather API</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">NLP</span>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="project-item">
-                    <div class="project-image">
-                        <img src="Pic/Menu.png" alt="Jimcom Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="project-fallback" style="display: none;">
-                            <div class="project-placeholder">📊</div>
-                            <span>Project Image</span>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Jimcom Analytics</h3>
-                        <p class="project-description">Business intelligence dashboard for sales data analysis and predictive modeling</p>
-                        <div class="project-tags">
-                            <span class="tag">SQL</span>
-                            <span class="tag">Tableau</span>
-                            <span class="tag">Statistical Analysis</span>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="project-item">
-                    <div class="project-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%234ECDC4'/%3E%3Ctext x='200' y='115' text-anchor='middle' fill='white' font-size='20'%3ECustomer%3C/text%3E%3Ctext x='200' y='140' text-anchor='middle' fill='white' font-size='20'%3ESegmentation%3C/text%3E%3C/svg%3E" alt="Customer Segmentation Project Screenshot" loading="lazy">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Customer Segmentation</h3>
-                        <p class="project-description">Machine learning project for customer behavior analysis and market segmentation using clustering algorithms</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Scikit-learn</span>
-                            <span class="tag">Clustering</span>
-                        </div>
-                    </div>
-                </article>
-                
-
             </div>
         </div>
     </section>

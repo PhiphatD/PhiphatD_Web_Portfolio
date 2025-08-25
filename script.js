@@ -256,9 +256,17 @@ function initializeScrollEffects() {
         const scrolled = window.pageYOffset;
         const rate = scrolled * -0.5;
         
-        // Parallax effect for hero section
+        // Parallax effect for hero section: run only if hero is full-height
         if (heroSection) {
-            heroSection.style.transform = `translateY(${rate}px)`;
+            const styles = window.getComputedStyle(heroSection);
+            const minH = styles.getPropertyValue('min-height');
+            // ensure overflow hidden to prevent layout shift
+            heroSection.style.overflow = 'hidden';
+            if (minH.includes('100vh') || minH.includes('100dvh')) {
+                heroSection.style.transform = `translateY(${rate}px)`;
+            } else {
+                heroSection.style.transform = 'translateY(0)';
+            }
         }
         
         // Hide scroll indicator after scrolling
@@ -280,7 +288,7 @@ function initializeScrollEffects() {
         }
     }
     
-    window.addEventListener('scroll', requestScrollUpdate);
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
     
     // Scroll indicator click handler
     if (scrollIndicator) {
