@@ -9,7 +9,8 @@
         "group": "ai_core",
         "highlight": true,
         "tags": ["AI"],
-        "proof": "Pic/eCertificate AI.png",
+        "proof": "Pic/eCertificate AI.pdf",
+        "preview": "Pic/eCertificate AI.png",
         "description": "ความเชี่ยวชาญด้าน Machine Learning และ GenAI บนคลาวด์ พร้อมประยุกต์ใช้ในโปรเจ็กต์จริง",
         "description_en": "ML & GenAI expertise on cloud platforms"
       }
@@ -36,6 +37,7 @@
         "highlight": false,
         "tags": ["ERP"],
         "proof": "Pic/eCertificate_ERP.pdf",
+        "preview": "Pic/eCertificate_ERP.png",
         "description": "พื้นฐานระบบ Enterprise Resource Planning และการใช้ AI ในการ forecasting และ automation",
         "description_en": "ERP foundations with AI forecasting capabilities"
       },

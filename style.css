@@ -2376,6 +2376,16 @@ html { scroll-padding-top: 76px; }
 .certificate-preview img { width:100% !important; height:100% !important; object-fit:contain !important; display:block !important; }
 .certificate-fallback { display:flex; align-items:center; justify-content:center; height:160px; color:#ddd; }
 
+/* Clickable cursor + hover highlight for certificate previews */
+.certificate-item .certificate-preview,
+.certificate-item--featured .certificate-preview { cursor: pointer !important; border: 1px solid transparent; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.certificate-item .certificate-preview *,
+.certificate-item--featured .certificate-preview * { cursor: pointer !important; }
+.certificate-item:hover .certificate-preview,
+.certificate-item--featured:hover .certificate-preview { border-color: rgba(99, 102, 241, 0.9); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.28); }
+.certificate-item:hover .certificate-preview img,
+.certificate-item--featured:hover .certificate-preview img { transform: scale(1.01); }
+
 /* --- Certificate Modal Styles --- */
 .cert-modal{position:fixed;inset:0;display:none;z-index:1400}
 .cert-modal.is-open{display:block}

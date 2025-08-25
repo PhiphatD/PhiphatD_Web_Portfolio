@@ -1,8 +1,9 @@
 // Certificate Data-Driven Renderer
 // ตัวอย่างการใช้งาน JSON data เพื่อเรนเดอร์ certificates
 
-// helper เลือก preview จาก proof อัตโนมัติ
+// helper เลือก preview จาก proof อัตโนมัติ (รองรับฟิลด์ preview โดยตรง)
 function getPreviewSrc(cert) {
+  if (cert.preview) return cert.preview; // ใช้รูปที่กำหนดไว้
   const proof = cert.proof || "";
   // ชื่อไฟล์ในโฟลเดอร์ Pic/ และเป็น .pdf
   const isLocalPic = /^(\.\/)?Pic\//i.test(proof);
@@ -146,16 +147,7 @@ function renderCertificatesFromData(certificates) {
           : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">${commonInner}</button>`;
     }).join('') || '';
 
-    const aiCoreGroupHtml = aiCoreItemsHtml ? `
-        <div class="certificate-group">
-            <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
-            <div class="certificate-grid certificate-grid--ai-4col">
-                ${aiCoreItemsHtml}
-            </div>
-        </div>
-    ` : '';
-
-    const regularHtml = certificates.enterprise_apps?.map(cert => {
+    const enterpriseItemsHtml = certificates.enterprise_apps?.map(cert => {
         const preview = getPreviewSrc(cert);
         const google  = isGoogleBadge(cert);
         const safe    = (u) => encodeURI(u || "");
@@ -174,22 +166,20 @@ function renderCertificatesFromData(certificates) {
           : `<button type="button" class="certificate-item" aria-label="${cert.title}" data-img="${preview ? safe(preview) : ''}" data-proof="${safe(cert.proof)}" data-title="${cert.title}">${commonInner}</button>`;
     }).join('') || '';
 
-    const fullHtml = `
+    container.innerHTML = `
         <h2 class="section__title">Certifications</h2>
         <span class="section__subtitle">AI-first, business-ready</span>
-        ${aiCoreGroupHtml}
+        <div class="certificate-group">
+            <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
+            <div class="certificate-grid certificate-grid--ai-4col">${aiCoreItemsHtml}</div>
+        </div>
         <div class="certificate-group">
             <h3 class="certificate-group-title">Enterprise Cloud Applications</h3>
-            <div class="certificate-grid">
-                ${regularHtml}
-            </div>
+            <div class="certificate-grid">${enterpriseItemsHtml}</div>
         </div>
     `;
-
-    container.innerHTML = fullHtml;
 }
 
-// Export สำหรับใช้ใน module
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         CertificateRenderer,
