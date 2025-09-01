@@ -665,6 +665,113 @@ function initializeSkillsToggle() {
      }
  }
 
+/*==================== SLIDESHOW FUNCTIONALITY ====================*/
+function changeSlide(button, direction) {
+    // Resolve slideshow container robustly across structures
+    const directContainer = button.closest('.slideshow-container');
+    const withinActivityImage = button.closest('.activity-image');
+    const container = directContainer || (withinActivityImage ? withinActivityImage.querySelector('.slideshow-container') : null);
+    if (!container) {
+        console.error('Slideshow container not found');
+        return;
+    }
+
+    // Resolve activity wrapper if present (may be same element in some structures)
+    const activityImage = container.closest('.activity-image') || withinActivityImage || null;
+
+    const slides = container.querySelectorAll('.slide');
+    // Dots may live inside the container or as a sibling under .activity-image
+    const dotsContainer = (container.querySelector('.slide-dots')) || (activityImage ? activityImage.querySelector('.slide-dots') : null);
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+    let currentIndex = 0;
+
+    // Check if slides exist
+    if (!slides || slides.length === 0) {
+        console.error('No slides found in slideshow container');
+        return;
+    }
+
+    // Find current active slide
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+
+    // Calculate new index
+    let newIndex = currentIndex + direction;
+    if (newIndex >= slides.length) newIndex = 0;
+    if (newIndex < 0) newIndex = slides.length - 1;
+
+    // Update slides
+    if (slides[currentIndex]) slides[currentIndex].classList.remove('active');
+    if (slides[newIndex]) slides[newIndex].classList.add('active');
+
+    // Update dots (only if they exist)
+    if (dots && dots.length > 0) {
+        if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
+        if (dots[newIndex]) dots[newIndex].classList.add('active');
+    }
+}
+
+function currentSlide(dot, slideNumber) {
+    // Resolve container: dots may be inside or sibling to container
+    const dotsContainerFromDot = dot.closest('.slide-dots');
+    const containerFromDot = dot.closest('.slideshow-container');
+    const activityFromDot = dot.closest('.activity-image');
+    const container = containerFromDot || (activityFromDot ? activityFromDot.querySelector('.slideshow-container') : null);
+    if (!container) {
+        console.error('Slideshow container not found');
+        return;
+    }
+
+    const activityImage = container.closest('.activity-image') || activityFromDot || null;
+
+    const slides = container.querySelectorAll('.slide');
+    const dotsContainer = dotsContainerFromDot || container.querySelector('.slide-dots') || (activityImage ? activityImage.querySelector('.slide-dots') : null);
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+
+    // Check if slides exist
+    if (!slides || slides.length === 0) {
+        console.error('No slides found in slideshow container');
+        return;
+    }
+
+    // Validate slide number
+    if (slideNumber < 1 || slideNumber > slides.length) {
+        console.error('Invalid slide number:', slideNumber);
+        return;
+    }
+
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    if (dots && dots.length > 0) {
+        dots.forEach(d => d.classList.remove('active'));
+    }
+
+    // Add active class to selected slide and dot
+    if (slides[slideNumber - 1]) {
+        slides[slideNumber - 1].classList.add('active');
+    }
+    if (dots && dots[slideNumber - 1]) {
+        dots[slideNumber - 1].classList.add('active');
+    }
+}
+
+// Auto-play slideshow (optional)
+function autoSlideshow() {
+    const containers = document.querySelectorAll('.slideshow-container');
+    containers.forEach(container => {
+        const nextBtn = container.querySelector('.next-btn');
+        if (nextBtn) {
+            changeSlide(nextBtn, 1);
+        }
+    });
+}
+
+// Uncomment the line below to enable auto-play every 5 seconds
+// setInterval(autoSlideshow, 5000);
+
 // Export functions for potential external use
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -676,6 +783,9 @@ if (typeof module !== 'undefined' && module.exports) {
         initializeTypewriter,
         initializeAccessibility,
         initializeSkillsToggle,
+        changeSlide,
+        currentSlide,
+        autoSlideshow,
         debounce,
         throttle
     };
