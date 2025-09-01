@@ -583,9 +583,16 @@ function initializeSkillsToggle() {
         const list = content.querySelector('.skills__list');
         const arrow = content.querySelector('.skills__arrow');
         
-        // Set initial state - all categories closed
-        content.classList.remove('skills__open');
-        content.classList.add('skills__close');
+        // Set initial state - AI & Data Science open, others closed
+        if (index === 0) {
+            // First category (AI & Data Science) - open by default
+            content.classList.add('skills__open');
+            content.classList.remove('skills__close');
+        } else {
+            // Other categories - closed by default
+            content.classList.remove('skills__open');
+            content.classList.add('skills__close');
+        }
         
         if (header) {
             header.addEventListener('click', () => {
@@ -623,7 +630,8 @@ function initializeSkillsToggle() {
          
          // Accessibility
          if (header) {
-             header.setAttribute('aria-expanded', 'false');
+             // Set aria-expanded based on initial state
+             header.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
              header.setAttribute('aria-controls', `skills-content-${index}`);
              header.setAttribute('role', 'button');
              header.setAttribute('tabindex', '0');
@@ -641,7 +649,20 @@ function initializeSkillsToggle() {
          }
      });
      
-     // No initial animation since all categories start closed
+     // Initial animation for AI & Data Science section (first category)
+     const firstCategory = skillsContent[0];
+     if (firstCategory && firstCategory.classList.contains('skills__open')) {
+         const firstList = firstCategory.querySelector('.skills__list');
+         if (firstList) {
+             const skillItems = firstList.querySelectorAll('.skills__data');
+             skillItems.forEach((item, i) => {
+                 setTimeout(() => {
+                     item.style.opacity = '1';
+                     item.style.transform = 'translateY(0)';
+                 }, i * 100);
+             });
+         }
+     }
  }
 
 // Export functions for potential external use

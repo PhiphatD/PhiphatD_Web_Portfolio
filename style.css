@@ -651,6 +651,26 @@ section.visible {
   border-color: var(--accent-primary);
 }
 
+.stat-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.stat-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.stat-link:hover .stat-number {
+  color: var(--accent-secondary);
+}
+
+.stat-link:hover .stat-label {
+  color: var(--text-primary);
+}
+
 .stat-number {
   display: block;
   font-size: var(--font-size-3xl);
@@ -713,8 +733,42 @@ section.visible {
   transition: all 0.3s ease;
 }
 
+/* New legend classes */
+.legend__hands-on {
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.2);
+  transition: all 0.3s ease;
+}
+
+.legend__practical {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.legend__exposure {
+  background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+  transition: all 0.3s ease;
+}
+
 .legend__expert:hover {
   box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
+  transform: scale(1.05);
+}
+
+.legend__hands-on:hover {
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
+  transform: scale(1.05);
+}
+
+.legend__practical:hover {
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+  transform: scale(1.05);
+}
+
+.legend__exposure:hover {
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
   transform: scale(1.05);
 }
 
@@ -942,7 +996,6 @@ section.visible {
 
 /* Skills level percentage bars */
 .skills__familiar {
-    width: 40%;
     background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
     animation: skills-familiar 2s;
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
@@ -950,7 +1003,6 @@ section.visible {
 }
 
 .skills__intermediate {
-    width: 66%;
     background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
     animation: skills-intermediate 2s;
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
@@ -958,15 +1010,48 @@ section.visible {
 }
 
 .skills__expert {
-    width: 100%;
     background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
     animation: skills-expert 2s;
     box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
     transition: all 0.3s ease;
 }
 
+/* New skill level classes */
+.skills__hands-on {
+    background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    transition: all 0.3s ease;
+}
+
+.skills__practical {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.skills__exposure {
+    background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+}
+
 .skills__expert:hover {
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    transform: scaleY(1.1);
+}
+
+.skills__hands-on:hover {
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    transform: scaleY(1.1);
+}
+
+.skills__practical:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transform: scaleY(1.1);
+}
+
+.skills__exposure:hover {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
     transform: scaleY(1.1);
 }
 
@@ -1081,7 +1166,6 @@ section.visible {
     display: block;
     height: 100%;
     border-radius: 4px;
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
 }
 
 .skills__percentage-bar::after {
