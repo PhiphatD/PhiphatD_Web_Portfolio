@@ -82,7 +82,8 @@
   }
 }
 
-/* Reduced motion support */
+/* Reduced motion support - commented out to allow animations */
+/*
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -98,6 +99,7 @@
     animation: none;
   }
 }
+*/
 
 html {
   scroll-behavior: smooth;
@@ -2320,7 +2322,8 @@ img[loading="lazy"].loaded {
   }
 }
 
-/* Reduced Motion */
+/* Reduced Motion - commented out to allow animations */
+/*
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -2332,6 +2335,7 @@ img[loading="lazy"].loaded {
     scroll-behavior: auto;
   }
 }
+*/
 
 /* Responsive Design */
 @media (max-width: 768px) {

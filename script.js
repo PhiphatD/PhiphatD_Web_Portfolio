@@ -421,9 +421,8 @@ function initializeAccessibility() {
     
     // Reduced motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.documentElement.style.setProperty('--transition', 'none');
-        
-        // Disable parallax for users who prefer reduced motion
+        // Respect reduced motion by disabling parallax effect only,
+        // but keep component transitions so accordions and sliders still animate.
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {
             heroSection.style.transform = 'none';
