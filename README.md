@@ -2,7 +2,7 @@
 
 A modern, responsive personal portfolio website showcasing my skills, projects, and experience in Data Science and AI. Built with clean HTML, CSS, and JavaScript with a professional dark theme design.
 
-🌐 **Live Demo**: [View Portfolio](https://phiphatd.github.io/portfolio) (Will be available after GitHub Pages deployment)
+🌐 **Live Demo**: [View Portfolio]([https://phiphatd.github.io/portfolio](https://phiphatd.github.io/PhiphatD_Web_Portfolio)) (Will be available after GitHub Pages deployment)
 
 ## 📋 About This Portfolio
 
