@@ -124,11 +124,11 @@
 
                         <div class="about-stats">
                             <a href="#projects" class="stat stat-link" aria-label="View AI/Data Projects">
-                                <span class="stat-number">3+</span>
+                                <span class="stat-number">4+</span>
                                 <span class="stat-label">AI/Data Projects</span>
                             </a>
                             <a href="#certificate" class="stat stat-link" aria-label="View Certificates">
-                                <span class="stat-number">8+</span>
+                                <span class="stat-number">9+</span>
                                 <span class="stat-label">Certificates</span>
                             </a>
                             <a href="#activities" class="stat stat-link" aria-label="View Activities & Events">
@@ -620,6 +620,34 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+
+                <article class="project-item">
+                    <div class="project-image">
+                        <img src="Pic/Rock-Paper-Scissors.png" alt="Bubooking Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-fallback" style="display: none;">
+                            <div class="project-placeholder">📱</div>
+                            <span>Project Image</span>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="#" class="btn btn-small btn-outline" aria-label="View source code">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rock Paper Scissors<br>(Image Classification)</h3>
+                        <p class="project-description">A TensorFlow/Keras CNN model that classifies Rock, Paper, and Scissors hand gesture images with 95% accuracy. Includes preprocessing, training, evaluation, and usage in Jupyter Notebook.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Neural Networks</span>
+                            <span class="tag">CNN</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Keras</span>
+                        </div>
+                    </div>
+                </article>
+
+
                 <article class="project-item">
                     <div class="project-image">
                         <img src="Pic/Chatbot.png" alt="Bubooking Project Screenshot" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -706,10 +734,26 @@
             
             <!-- AI Foundations - 4 Column Grid -->
             <div class="certificate-group">
-                <h3 class="certificate-group-title">Core AI / AI Foundations</h3>
+                <h3 class="certificate-group-title">Core AI / Data Science</h3>
                 
                 <!-- 4-Column Grid for all AI Certificates -->
                 <div class="certificate-grid certificate-grid--ai-4col">
+
+                    <button type="button" class="certificate-item" aria-label="Data Certificate" data-img="Pic/eCertificate_data.png" data-proof="Pic/eCertificate_data.pdf" data-title="Data Certificate">
+                        <div class="certificate-preview">
+                            <img src="Pic/eCertificate_data.png" alt="Data Certificate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="certificate-fallback" style="display: none;">
+                                <div class="pdf-icon">📄</div>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <div class="certificate-tag">Data Platform</div>
+                            <h4 class="certificate-title">Oracle Data Platform 2025 Certified Foundations Associate</h4>
+                            <p class="certificate-org">Oracle</p>
+                            <p class="certificate-date">8 Sep 2025</p>
+                        </div>
+                    </button>
+
                     <button type="button" class="certificate-item" aria-label="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate" data-img="Pic/eCertificate AI.png" data-proof="Pic/eCertificate AI.pdf" data-title="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
                         <div class="certificate-preview">
                             <img src="Pic/eCertificate AI.png" alt="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -724,6 +768,8 @@
                             <p class="certificate-date">22 Aug 2025</p>
                         </div>
                     </button>
+
+                    
                     
                     <a href="https://www.cloudskillsboost.google/public_profiles/86e51984-8a49-403f-ba7a-7e58ec26e8e8" target="_blank" rel="noopener noreferrer" class="certificate-item" aria-label="Google Cloud - Introduction to Generative AI">
                         <div class="certificate-preview">
@@ -769,6 +815,10 @@
                             <p class="certificate-date">1 Aug 2025</p>
                         </div>
                     </a>
+
+
+
+                    
                 </div>
             </div>
             
