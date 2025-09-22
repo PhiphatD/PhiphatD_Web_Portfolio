@@ -538,7 +538,7 @@ function initializeTypewriter() {
     const typewriterElement = document.querySelector('.gradient-text');
     if (!typewriterElement) return;
     
-    const texts = ['AI & Data Science', 'Machine Learning', 'Data Analytics', 'AI & Data Science'];
+    const texts = ['Model Deployment', 'Business Insights', 'AI & Data Science', 'Machine Learning'];
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
