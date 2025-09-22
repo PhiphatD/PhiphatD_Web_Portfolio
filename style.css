@@ -1408,6 +1408,7 @@ section.visible {
 }
 
 .certificate-item--featured .certificate-info {
+  text-align: center;
   flex: 1;
   text-align: left;
   display: flex;
@@ -1635,7 +1636,8 @@ img[loading="lazy"].loaded {
 .certificate-item {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   background: var(--card-bg);
   padding: var(--spacing-md);
@@ -1663,6 +1665,10 @@ img[loading="lazy"].loaded {
   margin-bottom: var(--spacing-md);
   background: #f8f9fa;
   border: 1px solid var(--border-color);
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .certificate-preview img {
@@ -1713,8 +1719,13 @@ img[loading="lazy"].loaded {
 
 .certificate-info {
   text-align: center;
-  flex: 1;
+  flex: 0 0 auto;
   margin-top: var(--spacing-md);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .certificate-title {
