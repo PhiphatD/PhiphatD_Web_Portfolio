@@ -2468,7 +2468,11 @@ img[loading="lazy"].loaded {
   }
   
   .about-text {
-    text-align: center;
+    text-align: left;
+  }
+  
+  .about-text p {
+    font-size: var(--font-size-base);
   }
   
   .about-image {
@@ -2588,6 +2592,7 @@ html { scroll-padding-top: 76px; }
   .hero-content { max-width: 40ch; margin-inline: auto; }
   .hero-title { font-size: 1.9rem; }
   .hero-description { font-size: 0.95rem; margin-bottom: var(--spacing-xl); }
+  .hero-description br { display: none; }
   .hero-avatar img { width: clamp(96px, 22vw, 140px); height: clamp(96px, 22vw, 140px); }
   .hero-buttons { flex-direction: column; gap: var(--spacing-md); }
   .hero-buttons .btn { width: 100%; max-width: 320px; }
@@ -2619,7 +2624,7 @@ html { scroll-padding-top: 76px; }
     display: inline-block;
   }
   .about-stats .stat:nth-child(3) .stat-label::after {
-    content: "Deployed Models";
+    content: "Activities & Events" !important;
     font-size: clamp(0.72rem, 2.7vw, 0.85rem);
     color: var(--text-secondary);
     letter-spacing: 0; /* คงสไตล์เดิม */
